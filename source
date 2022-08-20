@@ -9,7 +9,8 @@ local player = players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:FindFirstChildWhichIsA("Humanoid")
 
-function module:TeleportToRegion(region, callback)
+
+function module:TeleportToRegion(region, callback: (selected_location: string?)->())
     local regions = {
         swamp = {
             Name = "Swamp",
@@ -113,8 +114,14 @@ function module:TeleportToRegion(region, callback)
     local regionDict = regions[lower(region)].accessable and regions[lower(region)]
     local location = Ws[regionDict.Name]
 
+    local position = regionDict.Position
+    local cframe, offset = position.CFrame, position.Offset
+
     if location then
-        character:PivotTo()
+        character:PivotTo( CFrame.new(cframe.x, cframe.y, cframe.z) * CFrame.new(offset.x, offset.y, offset.z) )
+        callback(location.Name)
+    else
+        callback()
     end
 end
 
