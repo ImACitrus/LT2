@@ -1,7 +1,5 @@
 local module = {}
 
-local lower = string.lower;
-
 local Ws = game:GetService("Workspace")
 local players = game:GetService("Players")
 
@@ -111,7 +109,7 @@ function module:TeleportToRegion(region, callback: (selected_location: string?)-
         },
     }
     
-    local regionDict = regions[lower(region)].accessable and regions[lower(region)]
+    local regionDict = regions[string.lower(region)].accessable and regions[string.lower(region)]
     local location = Ws[regionDict.Name]
 
     local position = regionDict.Position
