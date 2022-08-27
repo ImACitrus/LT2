@@ -37,7 +37,7 @@ local list = {
 function module:GetNamesFromType(str)
 	local Info = {}
 	for _, v in ipairs(list[str]) do
-		Info[#Info+1] = {str = v.Name, pos = v.CFrame}
+		Info[#Info+1] = v.Name
 	end
 	return Info
 end
