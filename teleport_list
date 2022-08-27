@@ -61,15 +61,8 @@ local list = {
      },
 }
 
-function module.Type(str)
-    local self = {}
-    self.Type = str
-    return setmetatable(self, module)
-end
-
-function module:GetNamesFromType()
-    local Names = {}
-    for _, v in ipairs(list[self.Type]) do
+function module:GetNamesFromType(str)
+    for _, v in ipairs(list[str]) do
         Names[#Names+1] = v.Name
     end
     return Names
