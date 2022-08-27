@@ -37,9 +37,13 @@ local list = {
 function module:GetNamesFromType(str)
 	local Info = {}
 	for _, v in ipairs(list[str]) do
-		Info[#Info+1] = {v.Name, v.CFrame}
+		Info[#Info+1] = {str = v.Name, pos = v.CFrame}
 	end
-	return Info[1], Info[2] -- string, cframe
+	return Info
+end
+
+function module:GetSpecificType(Type, number) -- TypeTable, listedNumber
+	return list[Type][number]
 end
 
 return module
