@@ -3,47 +3,43 @@ local list = {
 	markets = {
 		{
 			Name = "Wood R'us",
-			CFrame = {x = 251, y = 3, z = 58}
+			CFrame = CFrame.new(251, 3, 58)
 		},
 		{
 			Name = "Land Store",
-			CFrame = {x = 246, y = 3, z = -99}
+			CFrame = CFrame.new(246, 3, -99)
 		},
 		{
 			Name = "Link's Logic",
-			CFrame = {x = 4612, y = 3, z = -748}
+			CFrame = CFrame.new(4612, 3, -748)
 		},
 		{
 			Name = "Fancy Furnishings",
-			CFrame = {x = 492, y = 3, z = -1696},
+			CFrame = CFrame.new(492, 3, -1696)
 		},
 		{
 			Name = "Boxed Cars",
-			CFrame = {x = 509, y = 3, z = -1479}
+			CFrame = CFrame.new(509, 3,  -1479)
 		},
 	};
 	wood_areas = {
 		{
 			Name = "Volcano",
-			CFrame = {x = -1614, y = 626, z = 1081}
+			CFrame = CFrame.new(-1614, 626, 1081)
 		},
 		{
 			Name = "Blue Cave",
-			CFrame = {x = 3344, y = -223, z = 11}
+			CFrame = CFrame.new(3344, -223, 11)
 		},
 	};
 }
 
 function module:GetNamesFromType(str)
-	local Names = {}
+	local Info = {}
 	for _, v in ipairs(list[str]) do
-		Names[#Names+1] = v.Name
+		Info[#Info+1] = {v.Name, v.CFrame}
 	end
-	return Names, {
-		getCFrame = function(Name)
-			return CFrame.new(list[str][Name].CFrame.x, list[str][Name].CFrame.y, list[str][Name].CFrame.z)
-		end,
-	}
+	return Info[1], Info[2] -- string, cframe
 end
 
 return module
