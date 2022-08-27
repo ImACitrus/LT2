@@ -39,7 +39,11 @@ function module:GetNamesFromType(str)
 	for _, v in ipairs(list[str]) do
 		Names[#Names+1] = v.Name
 	end
-	return Names
+	return Names, {
+		getCFrame = function(Name)
+			return CFrame.new(list[str][Name].CFrame.x, list[str][Name].CFrame.y, list[str][Name].CFrame.z)
+		end,
+	}
 end
 
 return module
