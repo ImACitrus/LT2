@@ -34,20 +34,19 @@ local list = {
 	};
 }
 
-function module:GetNamesFromType(str)
+function module:GetNamesFromType(Type)
 	local Info = {}
-	for _, v in ipairs(list[str]) do
-		Info[#Info+1] = v.Name
+	for _, v in ipairs(list[Type]) do
+		table.insert(Info, v.Name)
 	end
 	return Info
 end
 
-function module:GetSpecificType(Type, number, info:(a: string, b: CFrame)->()) -- TypeTable, listedNumber
-    local a = {}
-    for i, v in pairs(list[Type][number]) do
-	a[i]=v
-    end
-    info(a.Name, a.CFrame)
+function module:GetSpecificType(Type, number, info:(a: string, b: CFrame)->())
+	if info then
+		local list = list[Type][number or 1]
+		info(list.Name, list.CFrame)
+	end
 end
 
 return module
