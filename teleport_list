@@ -42,8 +42,8 @@ function module:GetNamesFromType(str)
 	return Info
 end
 
-function module:GetSpecificType(Type, number) -- TypeTable, listedNumber
-	return list[Type][number]
+function module:GetSpecificType(Type, number, info:(a: string, b: CFrame)->()) -- TypeTable, listedNumber
+    info(list[Type][number].Name, list[Type][number].CFrame)
 end
 
 return module
