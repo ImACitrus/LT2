@@ -1,4 +1,3 @@
-local module = {}
 local list = {
 	markets = {
 		{
@@ -34,19 +33,4 @@ local list = {
 	};
 }
 
-function module:GetNamesFromType(Type)
-	local Info = {}
-	for _, v in ipairs(list[Type]) do
-		table.insert(Info, v.Name)
-	end
-	return Info
-end
-
-function module:GetSpecificType(Type, number, info:(a: string, b: CFrame)->())
-	if info then
-		local list = list[Type][number or 1]
-		info(list.Name, list.CFrame)
-	end
-end
-
-return module
+return list
